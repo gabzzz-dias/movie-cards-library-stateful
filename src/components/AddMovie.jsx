@@ -26,6 +26,17 @@ class AddMovie extends React.Component {
             data-testid="subtitle-input"
           />
         </label>
+        <label
+          htmlFor="input-img"
+          data-testid="image-input-label"
+        >
+          Imagem
+          <input
+            type="text"
+            id="input-img"
+            data-testid="image-input"
+          />
+        </label>
       </form>
     );
   }
