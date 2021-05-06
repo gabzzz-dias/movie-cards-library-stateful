@@ -10,6 +10,7 @@ import Title from './Title';
 class AddMovie extends React.Component {
   constructor() {
     super();
+
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       title: '',
