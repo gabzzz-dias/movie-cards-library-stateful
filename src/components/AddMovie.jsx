@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Genre from './Genre';
 import ImagePath from './ImagePath';
 import RatingForm from './RatingForm';
@@ -27,6 +28,23 @@ class AddMovie extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  resetState() {
+    this.setState({
+      title: '',
+      subtitle: '',
+      img: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
+  submit(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
   }
 
   render() {
@@ -60,6 +78,10 @@ class AddMovie extends React.Component {
         <button
           type="submit"
           data-testid="send-button"
+          onClick={ (event) => {
+            this.submit(event);
+            this.resetState();
+          } }
         >
           Adicionar filme
         </button>
@@ -67,5 +89,12 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+// Para o requisito 14, consultei a PR do meu colega Leandro Reis, para entender melhor a função submit().
+// link: https://github.com/tryber/sd-010-b-project-movie-cards-library-stateful/pull/39
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func,
+}.isRequired;
 
 export default AddMovie;
